@@ -1,0 +1,25 @@
+nav {
+    .logo {
+        margin-right: auto;
+    }
+
+    img {
+        margin-right: auto;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-end;
+        gap: 1.5rem;
+        align-items: center;
+    }
+    a {
+        text-decoration: none;
+        padding: .75rem;
+        border-radius: .5rem;
+        background-color: rgb(75, 214, 196);
+        color: black;
+    }
+}
