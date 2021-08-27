@@ -23,8 +23,15 @@ const NavBar: React.FC = () => {
         <img
           src="https://img.icons8.com/color/96/000000/google-blog-search.png"
           alt="an icon of a blog"
-          onClick={() => history.push("/profile")}
+          onClick={() => history.push("/about")}
         />
+        {user && (
+          <li>
+            <Link className="pageLink" to="/profile">
+              Profile
+            </Link>
+          </li>
+        )}
         {user ? (
           <a className="pageLink" onClick={(event) => logout(event)} href="/">
             Logout
@@ -36,11 +43,6 @@ const NavBar: React.FC = () => {
             </Link>
           </li>
         )}
-        <li>
-          <Link className="pageLink" to="/about">
-            About
-          </Link>
-        </li>
         <li style={{ marginRight: "2rem" }}>
           <label className="switch">
             <input
