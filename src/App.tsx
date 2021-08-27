@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import { createContext, useState } from "react";
-import Article from "./pages/Article";
+import ArticlePage from "./pages/Article";
 
 export const ThemeContext = createContext(
   {} as {
@@ -24,9 +24,7 @@ function App() {
             <Route exact path="/">
               <HomePage />
             </Route>
-            <Route path="/article">
-              <Article />
-            </Route>
+            <Route path="/article/:id" component={ArticlePage} />
           </Switch>
         </Router>
       </div>
