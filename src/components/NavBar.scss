@@ -8,7 +8,7 @@ nav {
     .logo {
       color: $primaryColor;
     }
-    a {
+    .pageLink {
       background-color: $primaryColor;
     }
   }
@@ -16,7 +16,7 @@ nav {
     .logo {
       color: $darkPrimary;
     }
-    a {
+    .pageLink {
       background-color: $darkPrimary;
       color: beige;
     }
@@ -28,7 +28,7 @@ nav {
   }
 
   img {
-    margin-right: auto;
+    margin: auto;
     width: 5rem;
   }
 

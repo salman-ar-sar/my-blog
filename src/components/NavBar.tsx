@@ -8,16 +8,22 @@ const NavBar: React.FC = () => {
   return (
     <nav className={darkMode ? "dark" : "light"}>
       <ul>
-        <li className="logo">Our Blog</li>
+        <Link to="/">
+          <li className="logo">My Blog</li>
+        </Link>
         <img
           src="https://img.icons8.com/color/96/000000/google-blog-search.png"
           alt="an icon of a blog"
         />
         <li>
-          <Link to="/">Home</Link>
+          <Link className="pageLink" to="/profile">
+            Sign In
+          </Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link className="pageLink" to="/about">
+            About
+          </Link>
         </li>
         <li style={{ marginRight: "2rem" }}>
           <label className="switch">
