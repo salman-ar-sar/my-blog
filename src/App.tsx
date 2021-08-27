@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import { createContext, useState } from "react";
+import Article from "./pages/Article";
 
 export const ThemeContext = createContext(
   {} as {
@@ -13,16 +14,18 @@ export const ThemeContext = createContext(
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
-  const className = "container " + (darkMode ? "dark" : "light");
 
   return (
     <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
-      <div className={className}>
+      <div className={"container " + (darkMode ? "dark" : "light")}>
         <Router>
           <NavBar />
           <Switch>
             <Route exact path="/">
               <HomePage />
+            </Route>
+            <Route path="/article">
+              <Article />
             </Route>
           </Switch>
         </Router>
