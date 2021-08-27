@@ -1,9 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
+
+body {
+  font-family: "Roboto Slab", serif;
+}
+
 .container {
-  height: 100vh;
+  height: 100%;
+}
+
+.container p {
+  margin: 0;
 }
 
 .dark {
   background-color: rgb(14, 14, 14);
+  color: antiquewhite;
 }
 
 .light {
