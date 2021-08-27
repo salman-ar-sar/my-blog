@@ -27,7 +27,7 @@ const HomePage: React.FC = () => {
         {articleList?.map((article) => {
           return (
             <div className="article" key={article.id}>
-              <Link to={"/article" + article.id}>
+              <Link to={"/article/" + article.id}>
                 <p className="title">{article.title}</p>
               </Link>
               <img
