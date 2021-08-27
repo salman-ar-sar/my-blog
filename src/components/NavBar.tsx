@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { ThemeContext } from "../App";
+import { ThemeContext } from "./Contexts";
 import "./NavBar.scss";
 
 const NavBar: React.FC = () => {
@@ -16,7 +16,7 @@ const NavBar: React.FC = () => {
           alt="an icon of a blog"
         />
         <li>
-          <Link className="pageLink" to="/profile">
+          <Link className="pageLink" to="/login">
             Sign In
           </Link>
         </li>
