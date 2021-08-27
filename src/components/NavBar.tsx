@@ -1,10 +1,19 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { ThemeContext } from "./Contexts";
+import { Link, useHistory } from "react-router-dom";
+import { LoginContext, ThemeContext } from "./Contexts";
 import "./NavBar.scss";
 
 const NavBar: React.FC = () => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
+  const { user, setUser } = useContext(LoginContext);
+  const history = useHistory();
+
+  const logout = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    event.preventDefault();
+    setUser("");
+    history.push("/login");
+  };
+
   return (
     <nav className={darkMode ? "dark" : "light"}>
       <ul>
@@ -14,12 +23,19 @@ const NavBar: React.FC = () => {
         <img
           src="https://img.icons8.com/color/96/000000/google-blog-search.png"
           alt="an icon of a blog"
+          onClick={() => history.push("/profile")}
         />
-        <li>
-          <Link className="pageLink" to="/login">
-            Sign In
-          </Link>
-        </li>
+        {user ? (
+          <a className="pageLink" onClick={(event) => logout(event)} href="/">
+            Logout
+          </a>
+        ) : (
+          <li>
+            <Link className="pageLink" to="/login">
+              Sign In
+            </Link>
+          </li>
+        )}
         <li>
           <Link className="pageLink" to="/about">
             About
