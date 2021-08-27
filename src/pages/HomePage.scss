@@ -1,11 +1,5 @@
 h1 {
   text-align: center;
-  &.dark {
-    color: antiquewhite;
-  }
-  &.light {
-    color: black;
-  }
 }
 
 .articleContainer {
@@ -14,18 +8,35 @@ h1 {
   align-items: center;
   justify-items: center;
   gap: 1rem;
-  margin: 2rem;
+  padding: 2rem;
 }
 
 .article {
   background-color: rgb(255, 82, 82);
   border-radius: 0.5rem;
   padding: 0.5rem;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .title {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    margin-top: 0.25rem;
+    text-align: center;
+  }
 }
 
-.title {
-  font-weight: bold;
-  margin-bottom: 1rem;
-  margin-top: 0.25rem;
-  text-align: center;
+@media (max-width: 1200px) {
+  .articleContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .articleContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
