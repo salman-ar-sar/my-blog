@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import { createContext, useState } from "react";
 import ArticlePage from "./pages/Article";
+import Profile from "./pages/Profile";
 
 export const ThemeContext = createContext(
   {} as {
@@ -25,6 +26,9 @@ function App() {
               <HomePage />
             </Route>
             <Route path="/article/:id" component={ArticlePage} />
+            <Route path="/profile">
+              <Profile />
+            </Route>
           </Switch>
         </Router>
       </div>
