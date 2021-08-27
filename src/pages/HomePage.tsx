@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ThemeContext } from "../App";
+import { ThemeContext } from "../components/Contexts";
 import { Article } from "../types/article";
 import "./HomePage.scss";
 
