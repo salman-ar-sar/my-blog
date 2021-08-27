@@ -22,7 +22,7 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <h1 className={darkMode ? "dark" : "light"}>Welcome to our blog!</h1>
+      <h1 className={darkMode ? "dark" : "light"}>Welcome to my blog!</h1>
       <div className="articleContainer">
         {articleList?.map((article) => {
           return (
