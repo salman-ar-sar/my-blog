@@ -1,4 +1,5 @@
 import { useCallback, useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { ThemeContext } from "../App";
 import { Article } from "../types/article";
 import "./HomePage.scss";
@@ -12,7 +13,6 @@ const HomePage: React.FC = () => {
     fetch("./data.json")
       .then((response) => response.json())
       .then((articles) => setArticleList(articles))
-      // .then((articles) => console.log(articles))
       .catch((error) => console.error(error));
   }, []);
 
@@ -27,7 +27,9 @@ const HomePage: React.FC = () => {
         {articleList?.map((article) => {
           return (
             <div className="article" key={article.id}>
-              <p className="title">{article.title}</p>
+              <Link to={"/article" + article.id}>
+                <p className="title">{article.title}</p>
+              </Link>
               <img
                 src={`https://picsum.photos/300/200?random=${article.id}`}
                 alt="article"
