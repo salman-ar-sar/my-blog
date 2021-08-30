@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
+@import "./styles/variables";
 
 body {
   font-family: "Roboto Slab", serif;
@@ -19,4 +20,20 @@ body {
 
 .light {
   background-color: beige;
+}
+
+button {
+  background: $darkPrimary;
+  margin-top: 1rem;
+  color: antiquewhite;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font: inherit;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  &.dark {
+    background: $primaryColor;
+    color: black;
+  }
 }
