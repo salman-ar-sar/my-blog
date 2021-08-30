@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { ThemeContext } from "../components/Contexts";
 import { Article } from "../types/article";
-import ArticleContainer from "./ArticleContainer";
+import ArticleContainer from "../components/ArticleContainer";
 import "./HomePage.scss";
 
 const HomePage: React.FC = () => {
