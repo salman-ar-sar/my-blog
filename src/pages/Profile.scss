@@ -2,4 +2,36 @@
   h2 {
     padding-left: 3.5rem;
   }
+  .profileContainer {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    align-items: start;
+    height: 78vh;
+  }
+  .profileDeets {
+    background-color: rgba(255, 190, 110, 0.212);
+    height: 100%;
+    border-radius: 2rem;
+    .userImage {
+      display: block;
+      margin: auto;
+      margin-top: 4rem;
+      width: 15rem;
+    }
+    .userName {
+      padding: 0;
+      text-align: center;
+    }
+    p {
+      display: block;
+      text-align: center;
+    }
+    a {
+      text-decoration: none;
+    }
+    button {
+      margin: 1rem auto;
+      display: block;
+    }
+  }
 }
