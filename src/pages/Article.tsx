@@ -33,7 +33,11 @@ const ArticlePage = ({ match }: { match: match<Params> }) => {
       <h4>{article?.author}</h4>
       <figure>
         <img
-          src={`https://picsum.photos/500/300?random=${article?.id}`}
+          src={
+            article?.image
+              ? article.image
+              : `https://picsum.photos/500/300?random=${article?.id}`
+          }
           alt="article"
         />
       </figure>
