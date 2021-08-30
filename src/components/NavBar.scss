@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Rampart+One&display=swap");
 
-$primaryColor: #00dbdb;
-$darkPrimary: #020069;
+@import "../styles/variables";
 
 nav {
   &.dark {
