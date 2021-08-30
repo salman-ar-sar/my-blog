@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { LoginContext, ThemeContext } from "../components/Contexts";
+import { ThemeContext } from "../components/Contexts";
+import { useCookies } from "react-cookie";
 import "./Login.scss";
 
 const Login = () => {
   const history = useHistory();
-  const login = useContext(LoginContext);
   const { darkMode } = useContext(ThemeContext);
+  const [, setCookie] = useCookies(["user"]);
 
   type FormData = {
     username: string;
@@ -20,10 +21,10 @@ const Login = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const submitForm = handleSubmit((data) => {
-    if (data.username === "admin" && data.password === "root") {
+  const submitForm = handleSubmit(({ username, password }) => {
+    if (username === "admin" && password === "root") {
       //   alert("Correct");
-      login.setUser(data.username);
+      setCookie("user", username, { path: "/" });
       history.push("/profile");
     } else {
       alert("Wrong credentials!");
