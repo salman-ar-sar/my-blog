@@ -7,6 +7,7 @@ import ArticlePage from "./pages/Article";
 import Profile from "./pages/Profile";
 import { ThemeContext } from "./components/Contexts";
 import Login from "./pages/Login";
+import NewArticle from "./pages/NewArticle";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -26,6 +27,9 @@ function App() {
             </Route>
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path="/post">
+              <NewArticle />
             </Route>
           </Switch>
         </Router>
