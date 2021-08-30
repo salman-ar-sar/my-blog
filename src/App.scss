@@ -37,3 +37,15 @@ button {
     color: black;
   }
 }
+
+.loadingMsg {
+  font-size: 1.5rem;
+  margin: 3rem;
+}
+
+.errorMsg {
+  color: $errClr;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 3rem;
+}

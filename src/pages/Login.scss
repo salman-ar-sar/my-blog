@@ -30,6 +30,8 @@
     }
   }
   .errorMsg {
+    all: unset;
+    display: block;
     color: $errClr;
     text-align: center;
   }
