@@ -1,0 +1,47 @@
+@import "../styles/variables";
+
+.loginForm {
+  height: 84vh;
+  h2 {
+    text-align: center;
+  }
+  hr {
+    margin-bottom: 1.5rem;
+  }
+
+  form {
+    padding: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .inputClass {
+    margin: 1rem;
+    margin-bottom: 0.25rem;
+    text-align: center;
+    input {
+      padding: 0.5rem;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: large;
+      border-radius: 0.5rem;
+    }
+    button {
+      background: $darkPrimary;
+      margin-top: 1rem;
+      color: antiquewhite;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      font: inherit;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+    }
+    .dark {
+      background: $primaryColor;
+      color: black;
+    }
+  }
+  .errorMsg {
+    color: $errClr;
+    text-align: center;
+  }
+}
