@@ -3,9 +3,15 @@ import { useForm } from "react-hook-form";
 import { Article } from "../types/article";
 import { useContext } from "react";
 import { ThemeContext } from "../components/Contexts";
+import { useHistory } from "react-router-dom";
+
+type State = {
+  prevPath: string;
+};
 
 const NewArticle = () => {
   const { darkMode } = useContext(ThemeContext);
+  const history = useHistory<State>();
 
   const {
     register,
@@ -23,6 +29,13 @@ const NewArticle = () => {
     article.author = "Enid Blyton";
     console.log(article);
   });
+
+  if (
+    history.location.state === undefined ||
+    history.location.state.prevPath !== "/profile"
+  ) {
+    history.push("/profile");
+  }
 
   return (
     <div className="newPost">
