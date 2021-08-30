@@ -12,12 +12,9 @@ const ArticlePage = ({ match }: { match: match<Params> }) => {
   const id = match.params.id;
 
   const fetchData = useCallback(() => {
-    fetch("../data.json")
+    fetch(`http://localhost:8000/articles/${id}`)
       .then((response) => response.json())
-      .then((articles: Article[]) => {
-        const article: Article | undefined = articles.find(
-          (article) => article.id === Number(id)
-        );
+      .then((article: Article) => {
         setArticle(article);
       })
       .catch((error) => console.error(error));
