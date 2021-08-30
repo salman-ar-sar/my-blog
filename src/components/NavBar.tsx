@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useCookies } from "react-cookie";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { ThemeContext } from "./Contexts";
 import "./NavBar.scss";
 
@@ -8,6 +8,7 @@ const NavBar: React.FC = () => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
   const [{ user }, setCookie] = useCookies(["user"]);
   const history = useHistory();
+  let location = useLocation();
 
   const logout = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault();
@@ -28,11 +29,13 @@ const NavBar: React.FC = () => {
         />
         {user ? (
           <>
-            <li>
-              <Link className="pageLink" to="/profile">
-                Profile
-              </Link>
-            </li>
+            {location.pathname !== "/profile" && (
+              <li>
+                <Link className="pageLink" to="/profile">
+                  Profile
+                </Link>
+              </li>
+            )}
             <a className="pageLink" onClick={(event) => logout(event)} href="/">
               Logout
             </a>
