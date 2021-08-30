@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { match } from "react-router-dom";
+import useFetch from "../components/useFetch";
 import { Article } from "../types/article";
 import "./Article.scss";
 
@@ -8,24 +9,18 @@ interface Params {
 }
 
 const ArticlePage = ({ match }: { match: match<Params> }) => {
-  const [article, setArticle] = useState<Article>();
   const id = match.params.id;
 
-  const fetchData = useCallback(() => {
-    fetch(`http://localhost:8000/articles/${id}`)
-      .then((response) => response.json())
-      .then((article: Article) => {
-        setArticle(article);
-      })
-      .catch((error) => console.error(error));
-  }, [id]);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+  const {
+    data: article,
+    isPending,
+    errorMsg,
+  } = useFetch<Article>(`http://localhost:8000/articles/${id}`);
 
   return (
     <div className="articlePage">
+      {isPending && <div className="loadingMsg">Loading...</div>}
+      {errorMsg && <div className="errorMsg">{errorMsg}</div>}
       <h2>{article?.title}</h2>
       <h4>{article?.author}</h4>
       <figure>
