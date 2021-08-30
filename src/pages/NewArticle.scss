@@ -11,6 +11,7 @@
   }
   input {
     all: unset;
+    padding: 0.5rem;
     margin-left: 1.5rem;
     margin-bottom: 1rem;
     width: 20rem;
@@ -20,12 +21,16 @@
   }
   textarea {
     all: unset;
+    padding: 1rem;
     display: block;
     width: -webkit-fill-available;
     margin: 1rem 7rem;
     font-size: large;
-    background-color: antiquewhite;
+    background-color: rgba(255, 0, 0, 0.26);
     border-radius: 0.5rem;
+    &.dark {
+      background-color: #306069;
+    }
   }
   button {
     display: block;

@@ -40,6 +40,7 @@ const NewArticle = () => {
         <div className="inputClass">
           <label htmlFor="content">Content: </label>
           <textarea
+            className={darkMode ? "dark" : ""}
             {...register("content", { required: true })}
             name="content"
             cols={30}
