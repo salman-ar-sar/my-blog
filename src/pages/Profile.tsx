@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { Link } from "react-router-dom";
 import { Article } from "../types/article";
+import ArticleContainer from "./ArticleContainer";
 import "./Profile.scss";
 
 const Profile = () => {
@@ -27,21 +27,7 @@ const Profile = () => {
   return (
     <div className="profilePage">
       {user ? <h2>Welcome {user}!</h2> : <h2>Not logged in!</h2>}
-      <div className="articleContainer">
-        {articles?.map((article) => {
-          return (
-            <div className="article" key={article.id}>
-              <Link to={"/article/" + article.id}>
-                <p className="title">{article.title}</p>
-              </Link>
-              <img
-                src={`https://picsum.photos/300/200?random=${article.id}`}
-                alt="article"
-              />
-            </div>
-          );
-        })}
-      </div>
+      {articles && <ArticleContainer articles={articles} />}
     </div>
   );
 };
