@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { LoginContext } from "../components/Contexts";
+import { LoginContext, ThemeContext } from "../components/Contexts";
+import "./Login.scss";
 
 const Login = () => {
   const history = useHistory();
   const login = useContext(LoginContext);
+  const { darkMode } = useContext(ThemeContext);
 
   type FormData = {
     username: string;
@@ -29,7 +31,7 @@ const Login = () => {
   });
 
   return (
-    <div>
+    <div className="loginForm">
       <h2>Login</h2>
       <hr />
       <form onSubmit={submitForm}>
@@ -56,7 +58,7 @@ const Login = () => {
           <div className="errorMsg">This field is required</div>
         )}{" "}
         <div className="inputClass">
-          <button>Submit</button>
+          <button className={darkMode ? "dark" : ""}>Submit</button>
         </div>
       </form>
     </div>
