@@ -33,9 +33,11 @@ const ArticlePage = ({ match }: { match: match<Params> }) => {
         />
       </figure>
       <div className="content">
-        {article?.content.map((content, index) => (
-          <p key={index}>{content}</p>
-        ))}
+        {article?.content instanceof Array ? (
+          article?.content.map((content, index) => <p key={index}>{content}</p>)
+        ) : (
+          <p>{article?.content}</p>
+        )}
       </div>
     </div>
   );
