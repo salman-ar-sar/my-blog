@@ -39,7 +39,7 @@ const Profile = () => {
             <p>145 followers</p>
             <p>{articles?.length} articles!</p>
             <div className="inputClass">
-              <Link to={{ pathname: "/post", state: { prevPath: "/profile" } }}>
+              <Link to="/post">
                 <button className={darkMode ? "dark" : ""}>New Post +</button>
               </Link>
             </div>
