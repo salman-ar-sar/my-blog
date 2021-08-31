@@ -6,7 +6,6 @@ import { ThemeContext } from "../components/Contexts";
 import { useHistory } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
-import { useCallback } from "react";
 
 type State = {
   editArticle: number;
@@ -16,7 +15,7 @@ const NewArticle = () => {
   const { darkMode } = useContext(ThemeContext);
   const history = useHistory<State>();
   const [{ user }] = useCookies(["user"]);
-  const [article, setArticle] = useState({} as Article);
+  const [edit, setEdit] = useState(false);
 
   const {
     register,
@@ -25,26 +24,23 @@ const NewArticle = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const fetchArticle = useCallback(async () => {
+  const fetchPost = async () => {
     const id = history.location.state.editArticle;
-
-    fetch(`http://localhost:8000/articles/${id}`)
-      .then((res) => res.json())
-      .then((article) => setArticle(article))
-      .catch((error) => console.error(error));
-
-    if (article) {
-      setValue("title", article.title);
-      article.content && setValue("contents", article.content.join("\n"));
-    }
-  }, [article, history.location.state.editArticle, setValue]);
+    const response = await fetch(`http://localhost:8000/articles/${id}`);
+    const articles = await response.json();
+    return articles;
+  };
 
   useEffect(() => {
     if (history.location.state) {
-      fetchArticle();
+      fetchPost().then((article) => {
+        setEdit(true);
+        setValue("title", article.title);
+        article.content && setValue("contents", article.content.join("\n"));
+      });
     }
-    return;
-  }, [fetchArticle, history.location.state]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   type FormData = Article & {
     contents?: string;
@@ -65,8 +61,20 @@ const NewArticle = () => {
     }
     delete article.contents;
 
-    const response = await fetch("http://localhost:8000/articles", {
-      method: "post",
+    let url: string;
+    let method: string;
+
+    if (edit) {
+      const id = history.location.state.editArticle;
+      url = `http://localhost:8000/articles/${id}`;
+      method = "PUT";
+    } else {
+      url = "http://localhost:8000/articles";
+      method = "POST";
+    }
+
+    const response = await fetch(url, {
+      method: method,
       body: JSON.stringify(article),
       headers: {
         "Content-Type": "application/json; charset=UTF-8",
