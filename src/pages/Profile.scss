@@ -4,9 +4,11 @@
   }
   .profileContainer {
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 3fr 1fr;
     align-items: start;
-    height: 78vh;
+  }
+  .articleContainer {
+    grid-template-columns: repeat(3, 1fr);
   }
   .profileDeets {
     background-color: rgba(255, 190, 110, 0.212);
