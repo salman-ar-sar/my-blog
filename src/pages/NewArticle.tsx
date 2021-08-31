@@ -100,6 +100,7 @@ const NewArticle = () => {
         <div className="inputClass">
           <label htmlFor="title">Title: </label>
           <input
+            className="titleInput"
             {...register("title", { required: true })}
             type="text"
             name="title"
@@ -119,6 +120,16 @@ const NewArticle = () => {
         {errors.contents && (
           <div className="errorMsg">This field is required</div>
         )}{" "}
+        <div className="inputClass">
+          <label htmlFor="image">Image URL: </label>
+          <input
+            className="imageInput"
+            {...register("image", { required: true })}
+            type="text"
+            name="image"
+          />
+        </div>
+        {errors.image && <div className="errorMsg">This field is required</div>}{" "}
         <div className="inputClass">
           <button className={darkMode ? "dark" : ""}>Submit</button>
         </div>
