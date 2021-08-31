@@ -31,7 +31,7 @@ const ArticleContainer = ({ articles }: Props) => {
     id: number
   ) => {
     event.preventDefault();
-    history.push(`/post/${id}`, { prevPath: "/profile" });
+    history.push("/post", { editArticle: id });
   };
 
   return (
