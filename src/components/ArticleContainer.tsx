@@ -26,6 +26,14 @@ const ArticleContainer = ({ articles }: Props) => {
     }
   };
 
+  const editArticle = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: number
+  ) => {
+    event.preventDefault();
+    history.push(`/post/${id}`, { prevPath: "/profile" });
+  };
+
   return (
     <div className="articleContainer">
       {articles?.map((article) => {
@@ -39,9 +47,20 @@ const ArticleContainer = ({ articles }: Props) => {
               alt="article"
             />
             {location.pathname === "/profile" && (
-              <button onClick={(event) => deleteArticle(event, article.id)}>
-                Delete
-              </button>
+              <div className="buttonContainer">
+                <button onClick={(event) => deleteArticle(event, article.id)}>
+                  <img
+                    src="https://image.flaticon.com/icons/png/512/1632/1632602.png"
+                    alt="delete"
+                  />
+                </button>
+                <button onClick={(event) => editArticle(event, article.id)}>
+                  <img
+                    src="https://image.flaticon.com/icons/png/512/2921/2921222.png"
+                    alt="edit"
+                  />
+                </button>
+              </div>
             )}
           </div>
         );
