@@ -19,15 +19,29 @@ const NewArticle = () => {
     formState: { errors },
   } = useForm<Article>();
 
-  const submitForm = handleSubmit((article) => {
+  const submitForm = handleSubmit(async (article) => {
     article.id = Math.ceil(Math.random() * 10);
     let spacelessString: string = article.title
       .toLowerCase()
       .trim()
       .replace(/\s/g, "-");
-    article.title = spacelessString.replace(/[^a-z0-9-]/g, "");
+    article.name = spacelessString.replace(/[^a-z0-9-]/g, "");
     article.author = "Enid Blyton";
-    console.log(article);
+    // console.log(JSON.stringify(article));
+    const response = await fetch("http://localhost:8000/articles", {
+      method: "post",
+      body: JSON.stringify(article),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+    });
+    // const data = await response.json();
+
+    if (response.ok) {
+      history.push("/profile");
+    } else {
+      alert(response);
+    }
   });
 
   if (
