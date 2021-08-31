@@ -1,38 +1,34 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../components/Contexts";
 import { Article } from "../types/article";
 import ArticleContainer from "../components/ArticleContainer";
+import useFetch from "../components/useFetch";
 import "./Profile.scss";
 
 const Profile = () => {
   const [{ user }] = useCookies(["user"]);
   const { darkMode } = useContext(ThemeContext);
-  const [articles, setArticles] = useState<Article[]>();
 
-  const fetchData = useCallback(() => {
-    fetch("../data.json")
-      .then((response) => response.json())
-      .then((articles: Article[]) => {
-        const article: Article[] = articles.filter(
-          (article) => article.author === "Enid Blyton"
-        );
-        setArticles(article);
-      })
-      .catch((error) => console.error(error));
-  }, []);
+  const {
+    data: articleList,
+    isPending,
+    errorMsg,
+  } = useFetch<Article[]>("http://localhost:8000/articles");
 
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+  const articles = articleList?.filter(
+    (article) => article.author === "Enid Blyton"
+  );
 
   return (
     <div className="profilePage">
       {user ? <h2>Welcome {user}!</h2> : <h2>Not logged in!</h2>}
-      <div className="profileContainer">
-        {articles && <ArticleContainer articles={articles} />}
-        {user && (
+      {isPending && <div className="loadingMsg">Loading...</div>}
+      {errorMsg && <div className="errorMsg">{errorMsg}</div>}
+      {user && (
+        <div className="profileContainer">
+          {articles && <ArticleContainer articles={articles} />}
           <div className="profileDeets">
             <img
               className="userImage"
@@ -48,8 +44,8 @@ const Profile = () => {
               </Link>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
