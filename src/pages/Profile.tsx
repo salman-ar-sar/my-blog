@@ -12,13 +12,11 @@ const Profile = () => {
   const { darkMode } = useContext(ThemeContext);
 
   const {
-    data: articleList,
+    data: articles,
     isPending,
     errorMsg,
-  } = useFetch<Article[]>("http://localhost:8000/articles");
-
-  const articles = articleList?.filter(
-    (article) => article.author === "Enid Blyton"
+  } = useFetch<Article[]>(
+    "http://localhost:8000/articles?author=Enid%20Blyton"
   );
 
   return (
