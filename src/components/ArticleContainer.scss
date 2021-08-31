@@ -2,8 +2,14 @@
   img {
     border-radius: 0.5rem;
   }
-  button {
-    display: block;
-    margin: 0.5rem auto;
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    button {
+      margin: 0.5rem;
+      img {
+        width: 1.75rem;
+      }
+    }
   }
 }
