@@ -33,9 +33,10 @@ const NewArticle = () => {
 
   useEffect(() => {
     if (history.location.state) {
-      fetchPost().then((article) => {
+      fetchPost().then((article: Article) => {
         setEdit(true);
         setValue("title", article.title);
+        setValue("image", article.image);
         article.content && setValue("contents", article.content.join("\n"));
       });
     }
