@@ -1,31 +1,56 @@
 import "./NewArticle.scss";
 import { useForm } from "react-hook-form";
 import { Article } from "../types/article";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ThemeContext } from "../components/Contexts";
 import { useHistory } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { useEffect } from "react";
+import { useCallback } from "react";
 
 type State = {
-  prevPath: string;
+  editArticle: number;
 };
 
 const NewArticle = () => {
   const { darkMode } = useContext(ThemeContext);
   const history = useHistory<State>();
+  const [{ user }] = useCookies(["user"]);
+  const [article, setArticle] = useState({} as Article);
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<FormData>();
+
+  const fetchArticle = useCallback(async () => {
+    const id = history.location.state.editArticle;
+
+    fetch(`http://localhost:8000/articles/${id}`)
+      .then((res) => res.json())
+      .then((article) => setArticle(article))
+      .catch((error) => console.error(error));
+
+    if (article) {
+      setValue("title", article.title);
+      article.content && setValue("contents", article.content.join("\n"));
+    }
+  }, [article, history.location.state.editArticle, setValue]);
+
+  useEffect(() => {
+    if (history.location.state) {
+      fetchArticle();
+    }
+    return;
+  }, [fetchArticle, history.location.state]);
 
   type FormData = Article & {
     contents?: string;
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>();
-
   const submitForm = handleSubmit(async (article) => {
-    console.log("in");
-
     article.id = Math.ceil(Math.random() * 10);
 
     let spacelessString: string = article.title
@@ -40,8 +65,6 @@ const NewArticle = () => {
     }
     delete article.contents;
 
-    // console.log(JSON.stringify(article));
-
     const response = await fetch("http://localhost:8000/articles", {
       method: "post",
       body: JSON.stringify(article),
@@ -49,7 +72,6 @@ const NewArticle = () => {
         "Content-Type": "application/json; charset=UTF-8",
       },
     });
-    // const data = await response.json();
 
     if (response.ok) {
       history.push("/profile");
@@ -58,11 +80,9 @@ const NewArticle = () => {
     }
   });
 
-  if (
-    history.location.state === undefined ||
-    history.location.state.prevPath !== "/profile"
-  ) {
-    history.push("/profile");
+  if (!user) {
+    alert("Login before posting!");
+    history.push("/login");
   }
 
   return (
