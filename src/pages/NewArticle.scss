@@ -9,7 +9,7 @@
     margin-left: 5rem;
     margin-right: 0.5rem;
   }
-  input {
+  .titleInput {
     all: unset;
     padding: 0.5rem;
     margin-left: 1.5rem;
@@ -18,6 +18,15 @@
     font-size: xx-large;
     font-weight: 600;
     border-bottom: 0.15rem double green;
+  }
+  .imageInput {
+    all: unset;
+    padding: 0.5rem;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    width: 20rem;
+    font-size: large;
+    border-bottom: 0.15rem dashed green;
   }
   textarea {
     all: unset;
