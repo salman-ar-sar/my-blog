@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Article } from "../types/article";
+import "./ArticleContainer.scss";
 
 interface Props {
   articles: Article[];
 }
 
 const ArticleContainer = ({ articles }: Props) => {
+  let location = useLocation();
+
   return (
     <div className="articleContainer">
       {articles?.map((article) => {
@@ -18,6 +21,7 @@ const ArticleContainer = ({ articles }: Props) => {
               src={`https://picsum.photos/300/200?random=${article.id}`}
               alt="article"
             />
+            {location.pathname === "/profile" && <button>Delete</button>}
           </div>
         );
       })}
