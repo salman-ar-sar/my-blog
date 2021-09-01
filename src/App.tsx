@@ -19,7 +19,7 @@ import { useCookies } from "react-cookie";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
-  const [{ user }] = useCookies(["user"]);
+  const [{ user }] = useCookies<"user", { user: string }>(["user"]);
 
   const PrivateRoute = ({ children, ...rest }: RouteProps): JSX.Element => {
     return (
