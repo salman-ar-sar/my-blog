@@ -43,7 +43,11 @@ const ArticleContainer = ({ articles }: Props) => {
               <p className="title">{article.title}</p>
             </Link>
             <img
-              src={`https://picsum.photos/300/200?random=${article.id}`}
+              src={
+                article.image
+                  ? article.image
+                  : `https://picsum.photos/300/200?random=${article.id}`
+              }
               alt="article"
             />
             {location.pathname === "/profile" && (
