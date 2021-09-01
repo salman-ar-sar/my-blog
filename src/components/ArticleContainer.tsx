@@ -38,35 +38,35 @@ const ArticleContainer = ({ articles }: Props) => {
     <div className="articleContainer">
       {articles?.map((article) => {
         return (
-          <div className="article" key={article.id}>
-            <Link to={"/article/" + article.id}>
+          <Link to={"/article/" + article.id}>
+            <div className="article" key={article.id}>
               <p className="title">{article.title}</p>
-            </Link>
-            <img
-              src={
-                article.image
-                  ? article.image
-                  : `https://picsum.photos/300/200?random=${article.id}`
-              }
-              alt="article"
-            />
-            {location.pathname === "/profile" && (
-              <div className="buttonContainer">
-                <button onClick={(event) => deleteArticle(event, article.id)}>
-                  <img
-                    src="https://image.flaticon.com/icons/png/512/1632/1632602.png"
-                    alt="delete"
-                  />
-                </button>
-                <button onClick={(event) => editArticle(event, article.id)}>
-                  <img
-                    src="https://image.flaticon.com/icons/png/512/2921/2921222.png"
-                    alt="edit"
-                  />
-                </button>
-              </div>
-            )}
-          </div>
+              <img
+                src={
+                  article.image
+                    ? article.image
+                    : `https://picsum.photos/300/200?random=${article.id}`
+                }
+                alt="article"
+              />
+              {location.pathname === "/profile" && (
+                <div className="buttonContainer">
+                  <button onClick={(event) => deleteArticle(event, article.id)}>
+                    <img
+                      src="https://image.flaticon.com/icons/png/512/1632/1632602.png"
+                      alt="delete"
+                    />
+                  </button>
+                  <button onClick={(event) => editArticle(event, article.id)}>
+                    <img
+                      src="https://image.flaticon.com/icons/png/512/2921/2921222.png"
+                      alt="edit"
+                    />
+                  </button>
+                </div>
+              )}
+            </div>
+          </Link>
         );
       })}
     </div>
