@@ -1,5 +1,11 @@
 import "./App.scss";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  RouteProps,
+  Switch,
+} from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import { useState } from "react";
@@ -9,9 +15,20 @@ import { ThemeContext } from "./components/Contexts";
 import Login from "./pages/Login";
 import NewArticle from "./pages/NewArticle";
 import PageNotFound from "./pages/PageNotFound";
+import { useCookies } from "react-cookie";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
+  const [{ user }] = useCookies(["user"]);
+
+  const PrivateRoute = ({ children, ...rest }: RouteProps): JSX.Element => {
+    return (
+      <Route
+        {...rest}
+        render={() => (user ? children : <Redirect to="/login" />)}
+      />
+    );
+  };
 
   return (
     <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
@@ -23,12 +40,12 @@ function App() {
               <HomePage />
             </Route>
             <Route path="/article/:id" component={ArticlePage} />
-            <Route path="/profile">
-              <Profile />
-            </Route>
             <Route path="/login">
               <Login />
             </Route>
+            <PrivateRoute path="/profile">
+              <Profile />
+            </PrivateRoute>
             <Route path="/post">
               <NewArticle />
             </Route>
