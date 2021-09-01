@@ -125,7 +125,7 @@ const NewArticle = () => {
           <label htmlFor="image">Image URL: </label>
           <input
             className="imageInput"
-            {...register("image", { required: true })}
+            {...register("image", { required: false })}
             type="text"
             name="image"
           />
