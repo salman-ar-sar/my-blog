@@ -1,6 +1,13 @@
-# Getting Started with Create React App
+# My Blog
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Prerequisites
+
+- Node/NPM
+- A JSON file containing data in atricles object format stored in `data/data.json`
+- [JSON server](https://www.npmjs.com/package/json-server) watching this JSON and running at port 8000
+  - Use this command to run it: `npx json-server --watch data/data.json --port 8000`
 
 ## Available Scripts
 
