@@ -1,12 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
 @import "./styles/variables";
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   font-family: "Roboto Slab", serif;
 }
 
+#root {
+  height: 100%;
+}
+
 .container {
   height: 100%;
+  overflow: auto;
 }
 
 .container p {
