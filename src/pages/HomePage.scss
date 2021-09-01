@@ -1,3 +1,5 @@
+@import "../styles/mixins";
+
 h1 {
   text-align: center;
 }
@@ -18,8 +20,7 @@ h1 {
   text-shadow: 0 0 black;
 
   a {
-    text-decoration: none;
-    color: black;
+    @include reset-a;
   }
 
   .title {

@@ -1,7 +1,8 @@
+@import "../styles/mixins";
+
 .articleContainer {
   a {
-    text-decoration: none;
-    color: black;
+    @include reset-a;
   }
   img {
     border-radius: 0.5rem;
