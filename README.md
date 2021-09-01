@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Packages used
+
+- Node SASS
+- [React Router DOM](https://www.npmjs.com/package/react-router)
+- [React Hook Form](https://www.npmjs.com/package/react-hook-form)
+- [React Cookie](https://www.npmjs.com/package/react-cookie)
+
 ## Prerequisites
 
 - Node/NPM
