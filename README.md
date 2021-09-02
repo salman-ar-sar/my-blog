@@ -12,7 +12,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Prerequisites
 
 - Node/NPM
-- A JSON file containing data in atricles object format stored in `data/data.json`. [eg](https://gitlab.hatio.in/salman.a/my-blog/-/blob/ae4faad464c7e79b12f6905a74fa6730b2258fe0/data/data.json)
+- A JSON file containing data in atricles object format stored in `data/data.json`. [Click here to see a sample](https://gitlab.hatio.in/-/snippets/306).
 - [JSON server](https://www.npmjs.com/package/json-server) watching this JSON and running at port 8000
   - Use this command to run it: `npx json-server --watch data/data.json --port 8000`
 
