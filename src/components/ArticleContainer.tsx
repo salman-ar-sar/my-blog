@@ -27,22 +27,25 @@ const ArticleContainer = ({ articles }: Props) => {
     },
   };
 
+  const confirmDelete = async () => {
+    const response = await fetch(`http://localhost:8000/articles/${deleteID}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      history.go(0);
+    } else {
+      alert(response);
+    }
+  };
+
   const deleteArticle = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     id: number
   ) => {
     event.preventDefault();
-
+    setDeleteID(id);
     setModalOpen(true);
-    // const response = await fetch(`http://localhost:8000/articles/${id}`, {
-    //   method: "DELETE",
-    // });
-
-    // if (response.ok) {
-    //   history.go(0);
-    // } else {
-    //   alert(response);
-    // }
   };
 
   const editArticle = async (
@@ -93,10 +96,15 @@ const ArticleContainer = ({ articles }: Props) => {
         })}
       </div>
       <Modal isOpen={modalOpen} style={customStyles}>
-        <button onClick={() => setModalOpen(false)}>x</button>
-        Are you sure you want to delete this article?
-        <button onClick={() => setModalOpen(false)}>Confirm</button>
-        <button onClick={() => setModalOpen(false)}>Cancel</button>
+        <p>Are you sure you want to delete this article?</p>
+        <div className="buttons">
+          <button className="confirmButton" onClick={() => confirmDelete()}>
+            Confirm
+          </button>
+          <button className="cancelButton" onClick={() => setModalOpen(false)}>
+            Cancel
+          </button>
+        </div>
       </Modal>
     </>
   );
