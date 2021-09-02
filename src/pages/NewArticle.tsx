@@ -48,8 +48,6 @@ const NewArticle = () => {
   };
 
   const submitForm = handleSubmit(async (article) => {
-    article.id = Math.ceil(Math.random() * 10);
-
     let spacelessString: string = article.title
       .toLowerCase()
       .trim()
