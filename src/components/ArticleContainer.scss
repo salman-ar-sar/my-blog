@@ -11,8 +11,8 @@
     object-fit: cover;
   }
   .buttonContainer {
-    display: flex;
-    justify-content: center;
+    @include flexCenter;
+
     button {
       margin: 0.5rem;
       cursor: crosshair;
@@ -25,9 +25,7 @@
 }
 
 .buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flexCenter;
   gap: 1.5rem;
 
   .confirmButton {
