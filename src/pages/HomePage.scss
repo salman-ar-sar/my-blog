@@ -1,4 +1,4 @@
-@use "../styles/mixins" as *;
+@use "../styles" as *;
 
 h1 {
   text-align: center;
@@ -31,14 +31,20 @@ h1 {
   }
 }
 
-@media (max-width: 1200px) {
+@include miniLaptop {
   .articleContainer {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (max-width: 900px) {
+@include tablet {
   .articleContainer {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include mobile {
+  .articleContainer {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

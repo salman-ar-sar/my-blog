@@ -1,3 +1,5 @@
+@use "../styles/mixins" as *;
+
 .profilePage {
   h2 {
     padding-left: 3.5rem;
@@ -38,7 +40,7 @@
   }
 }
 
-@media (max-width: 1200px) {
+@include miniLaptop {
   .profilePage {
     .articleContainer {
       grid-template-columns: repeat(2, 1fr);
@@ -46,10 +48,18 @@
   }
 }
 
-@media (max-width: 900px) {
+@include tablet {
   .profilePage {
     .articleContainer {
       grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}
+
+@include mobile {
+  .profilePage {
+    .profileContainer {
+      grid-template-columns: 1fr 1fr;
     }
   }
 }
