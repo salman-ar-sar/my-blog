@@ -30,6 +30,15 @@ function App() {
     );
   };
 
+  const LoginRoute = ({ children, ...rest }: RouteProps): JSX.Element => {
+    return (
+      <Route
+        {...rest}
+        render={() => (!user ? children : <Redirect to="/profile" />)}
+      />
+    );
+  };
+
   return (
     <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
       <div className={"container " + (darkMode ? "dark" : "light")}>
@@ -40,9 +49,9 @@ function App() {
               <HomePage />
             </Route>
             <Route path="/article/:id" component={ArticlePage} />
-            <Route path="/login">
+            <LoginRoute path="/login">
               <Login />
-            </Route>
+            </LoginRoute>
             <PrivateRoute path="/profile">
               <Profile />
             </PrivateRoute>
