@@ -16,6 +16,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [JSON server](https://www.npmjs.com/package/json-server) watching this JSON and running at port 8000
   - Use this command to run it: `npx json-server --watch data/data.json --port 8000`
 
+## Todo
+
+- [ ] Confirmation popup on deleting article
+- [ ]  More SCSS integration
+
 ## Available Scripts
 
 In the project directory, you can run:
