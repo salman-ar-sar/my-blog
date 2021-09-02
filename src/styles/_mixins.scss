@@ -5,6 +5,11 @@
   color: black;
 }
 
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+}
+
 @mixin mobile {
   @media (max-width: $mobile) {
     @content;
