@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { ThemeContext } from "../components/Contexts";
 import { useCookies } from "react-cookie";
 import "./Login.scss";
@@ -73,7 +73,7 @@ const Login = () => {
       </form>
 
       <div className="centerDiv">
-        Not registered? <a href="/register">Click here to register</a>.
+        Not registered? <Link to="/register">Click here to register</Link>.
       </div>
     </div>
   );
