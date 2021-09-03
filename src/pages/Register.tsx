@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { ThemeContext } from "../components/Contexts";
 import { useCookies } from "react-cookie";
-import "./Login.scss";
+import "./Register.scss";
 import sha256 from "../components/sha256";
 import { User, UserForm } from "../types/types";
 
@@ -47,7 +47,9 @@ const Register = () => {
       <hr />
       <form onSubmit={submitForm}>
         <div className="inputClass">
-          <label htmlFor="name">Name: </label>
+          <label htmlFor="name" className="nameLabel">
+            Name:{" "}
+          </label>
           <input
             {...register("name", { required: true })}
             type="text"
@@ -65,7 +67,9 @@ const Register = () => {
         </div>
         {errors.id && <div className="errorMsg">This field is required</div>}{" "}
         <div className="inputClass">
-          <label htmlFor="password">Password: </label>
+          <label htmlFor="password" className="passLabel">
+            Password:{" "}
+          </label>
           <input
             {...register("password", { required: true })}
             type="password"
