@@ -12,3 +12,7 @@ export type User = {
   passwordHash: string;
   name: string;
 };
+
+export type UserForm = User & {
+  password: string;
+};
