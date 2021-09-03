@@ -6,3 +6,8 @@ export type Article = {
   content: string[];
   image: string;
 };
+
+export type User = {
+  id: string;
+  passwordHash: string;
+};
