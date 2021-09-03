@@ -19,10 +19,11 @@ const NavBar: React.FC = () => {
   return (
     <nav className={darkMode ? "dark" : "light"}>
       <ul>
-        <Link to="/">
+        <Link className="logoLink" to="/">
           <li className="logo">My Blog</li>
         </Link>
         <img
+          className="blogIcon"
           src="https://img.icons8.com/color/96/000000/google-blog-search.png"
           alt="an icon of a blog"
           onClick={() => history.push("/about")}
@@ -30,7 +31,7 @@ const NavBar: React.FC = () => {
         {user ? (
           <>
             {location.pathname !== "/profile" && (
-              <li>
+              <li className="profileButton">
                 <Link className="pageLink" to="/profile">
                   Profile
                 </Link>
@@ -47,7 +48,7 @@ const NavBar: React.FC = () => {
             </Link>
           </li>
         )}
-        <li style={{ marginRight: "2rem" }}>
+        <li className="themeToggle">
           <label className="switch">
             <input
               type="checkbox"
