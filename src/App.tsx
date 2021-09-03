@@ -16,15 +16,10 @@ import Login from "./pages/Login";
 import NewArticle from "./pages/NewArticle";
 import PageNotFound from "./pages/PageNotFound";
 import { useCookies } from "react-cookie";
-// import sha256 from "./components/sha256";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [{ user }] = useCookies<"user", { user: string }>(["user"]);
-
-  // const [hash, setHash] = useState("");
-  // sha256("root").then((string) => setHash(string));
-  // console.log(hash);
 
   const PrivateRoute = ({ children, ...rest }: RouteProps): JSX.Element => {
     return (
