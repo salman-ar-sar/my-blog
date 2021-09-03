@@ -28,28 +28,34 @@ const NavBar: React.FC = () => {
           alt="an icon of a blog"
           onClick={() => history.push("/about")}
         />
-        {user ? (
-          <>
-            {location.pathname !== "/profile" && (
-              <li className="profileButton">
-                <Link className="pageLink" to="/profile">
-                  Profile
-                </Link>
-              </li>
-            )}
-            <a className="pageLink" onClick={(event) => logout(event)} href="/">
-              Logout
-            </a>
-          </>
-        ) : (
+        <div className="buttonContainer">
+          {user ? (
+            <>
+              {location.pathname !== "/profile" && (
+                <li className="profileButton">
+                  <Link className="pageLink" to="/profile">
+                    Profile
+                  </Link>
+                </li>
+              )}
+              <a
+                className="pageLink"
+                onClick={(event) => logout(event)}
+                href="/"
+              >
+                Logout
+              </a>
+            </>
+          ) : (
             location.pathname !== "/login" && (
               <li className="pageLink">
-            <Link className="pageLink" to="/login">
-              Sign In
-            </Link>
-          </li>
+                <Link className="pageLink" to="/login">
+                  Sign In
+                </Link>
+              </li>
             )
-        )}
+          )}
+        </div>
         <li className="themeToggle">
           <label className="switch">
             <input
