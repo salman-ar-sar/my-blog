@@ -16,6 +16,7 @@ import Login from "./pages/Login";
 import NewArticle from "./pages/NewArticle";
 import PageNotFound from "./pages/PageNotFound";
 import { useCookies } from "react-cookie";
+import Register from "./pages/Register";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -52,6 +53,9 @@ function App() {
             <LoginRoute path="/login">
               <Login />
             </LoginRoute>
+            <Route path="/register">
+              <Register />
+            </Route>
             <PrivateRoute path="/profile">
               <Profile />
             </PrivateRoute>
