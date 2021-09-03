@@ -1,7 +1,7 @@
 import { match } from "react-router-dom";
 import useFetch from "../components/useFetch";
 import { Article } from "../types/types";
-import "./Article.scss";
+import "./ArticlePage.scss";
 
 interface Params {
   id: string;
