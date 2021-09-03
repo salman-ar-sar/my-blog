@@ -21,10 +21,7 @@ const ArticlePage = ({ match }: { match: match<Params> }) => {
       {isPending && <div className="loadingMsg">Loading...</div>}
       {errorMsg && <div className="errorMsg">{errorMsg}</div>}
       <h2>{article?.title}</h2>
-      <Link
-        className="authorName"
-        to={`/user/${article?.author.split(" ")[0].toLowerCase()}`}
-      >
+      <Link className="authorName" to={`/user/${article?.author}`}>
         <h4>{article?.author}</h4>
       </Link>
       <figure>
