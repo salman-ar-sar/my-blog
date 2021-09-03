@@ -8,6 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [React Router DOM](https://www.npmjs.com/package/react-router)
 - [React Hook Form](https://www.npmjs.com/package/react-hook-form)
 - [React Cookie](https://www.npmjs.com/package/react-cookie)
+- [React Modal](https://www.npmjs.com/package/react-modal)
 
 ## Prerequisites
 
