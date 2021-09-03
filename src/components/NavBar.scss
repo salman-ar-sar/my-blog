@@ -3,14 +3,6 @@
 
 nav {
   margin-bottom: 4rem;
-  .pageLink {
-    grid-column: 8;
-    justify-self: end;
-  }
-  .profileButton {
-    grid-column: 7;
-    justify-self: end;
-  }
   &.dark {
     .logo {
       color: $primaryColor;
@@ -42,7 +34,8 @@ nav {
   }
 
   ul {
-    margin-top: 0;
+    margin: 0;
+    padding: 0;
     list-style: none;
     @include gridCenter;
     grid-template-columns: repeat(9, 1fr);
@@ -54,8 +47,17 @@ nav {
   }
 
   .themeToggle {
-    margin-right: 2rem;
-    grid-column: 9;
+    margin: 2rem;
+    grid-column: 10;
+  }
+
+  .buttonContainer {
+    grid-column: 8 / 10;
+    justify-self: end;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 2rem;
   }
 
   a {
