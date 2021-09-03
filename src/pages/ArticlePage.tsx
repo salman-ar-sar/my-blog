@@ -1,4 +1,4 @@
-import { match } from "react-router-dom";
+import { Link, match } from "react-router-dom";
 import useFetch from "../components/useFetch";
 import { Article } from "../types/types";
 import "./ArticlePage.scss";
@@ -21,7 +21,9 @@ const ArticlePage = ({ match }: { match: match<Params> }) => {
       {isPending && <div className="loadingMsg">Loading...</div>}
       {errorMsg && <div className="errorMsg">{errorMsg}</div>}
       <h2>{article?.title}</h2>
-      <h4>{article?.author}</h4>
+      <Link to={`/user/${article?.author.split(" ")[0].toLowerCase()}`}>
+        <h4>{article?.author}</h4>
+      </Link>
       <figure>
         <img
           src={
