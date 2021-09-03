@@ -1,8 +1,8 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../components/Contexts";
-import { Article } from "../types/types";
+import { Article, User } from "../types/types";
 import ArticleContainer from "../components/ArticleContainer";
 import useFetch from "../components/useFetch";
 import "./Profile.scss";
@@ -10,18 +10,28 @@ import "./Profile.scss";
 const Profile = () => {
   const [{ user }] = useCookies(["user"]);
   const { darkMode } = useContext(ThemeContext);
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    fetch(`http://localhost:8000/users/${user}`)
+      .then((res) => res.json())
+      .then((uname: User) => setUsername(uname.name))
+      .catch((error) => console.error(error));
+  }, [user]);
 
   const {
     data: articles,
     isPending,
     errorMsg,
   } = useFetch<Article[]>(
-    "http://localhost:8000/articles?author=Enid%20Blyton"
+    `http://localhost:8000/articles?author=${username
+      .trim()
+      .replace(" ", "%20")}`
   );
 
   return (
     <div className="profilePage">
-      {user ? <h2>Welcome {user}!</h2> : <h2>Not logged in!</h2>}
+      {user ? <h2>Welcome {username}!</h2> : <h2>Not logged in!</h2>}
       {isPending && <div className="loadingMsg">Loading...</div>}
       {errorMsg && <div className="errorMsg">{errorMsg}</div>}
       {user && (
@@ -33,7 +43,7 @@ const Profile = () => {
               src="https://image.flaticon.com/icons/png/512/1077/1077012.png"
               alt="user"
             />
-            <h2 className="userName">{user}</h2>
+            <h2 className="userName">{username}</h2>
             <p>145 followers</p>
             <p>{articles?.length} articles!</p>
             <div className="inputClass">
