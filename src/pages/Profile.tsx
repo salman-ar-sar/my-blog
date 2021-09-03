@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../components/Contexts";
-import { Article } from "../types/article";
+import { Article } from "../types/types";
 import ArticleContainer from "../components/ArticleContainer";
 import useFetch from "../components/useFetch";
 import "./Profile.scss";

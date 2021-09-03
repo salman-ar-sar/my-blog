@@ -1,5 +1,5 @@
 import { Link, useHistory, useLocation } from "react-router-dom";
-import { Article } from "../types/article";
+import { Article } from "../types/types";
 import "./ArticleContainer.scss";
 import Modal from "react-modal";
 import { useState } from "react";

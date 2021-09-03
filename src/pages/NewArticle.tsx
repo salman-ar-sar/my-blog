@@ -1,6 +1,6 @@
 import "./NewArticle.scss";
 import { useForm } from "react-hook-form";
-import { Article } from "../types/article";
+import { Article } from "../types/types";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../components/Contexts";
 import { useHistory } from "react-router-dom";

@@ -1,6 +1,6 @@
 import { match } from "react-router-dom";
 import useFetch from "../components/useFetch";
-import { Article } from "../types/article";
+import { Article } from "../types/types";
 import "./Article.scss";
 
 interface Params {
