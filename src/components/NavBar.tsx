@@ -42,11 +42,13 @@ const NavBar: React.FC = () => {
             </a>
           </>
         ) : (
-          <li>
+            location.pathname !== "/login" && (
+              <li className="pageLink">
             <Link className="pageLink" to="/login">
               Sign In
             </Link>
           </li>
+            )
         )}
         <li className="themeToggle">
           <label className="switch">
