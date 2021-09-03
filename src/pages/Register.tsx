@@ -37,7 +37,7 @@ const Register = () => {
       setCookie("user", user.id, { path: "/" });
       history.push("/profile");
     } else {
-      alert(response);
+      alert(response.status + " " + response.statusText);
     }
   });
 
