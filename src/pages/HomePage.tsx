@@ -8,7 +8,7 @@ import useFetch from "../components/useFetch";
 
 const HomePage: React.FC = () => {
   const { darkMode } = useContext(ThemeContext);
-  const [{ user }] = useCookies(["user"]);
+  const [{ user }] = useCookies<"user", { user: string }>(["user"]);
 
   const {
     data: articleList,
@@ -19,7 +19,9 @@ const HomePage: React.FC = () => {
   return (
     <>
       <h1 className={darkMode ? "dark" : "light"}>
-        {user ? `Welcome back, ${user}!` : "Welcome to my blog!"}
+        {user
+          ? `Welcome back, ${user[0].toUpperCase() + user.slice(1)}!`
+          : "Welcome to my blog!"}
       </h1>
       {isPending && <div className="loadingMsg">Loading...</div>}
       {errorMsg && <div className="errorMsg">{errorMsg}</div>}
