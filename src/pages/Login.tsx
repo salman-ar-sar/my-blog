@@ -71,6 +71,10 @@ const Login = () => {
           <button className={darkMode ? "dark" : ""}>Submit</button>
         </div>
       </form>
+
+      <div className="centerDiv">
+        Not registered? <a href="/register">Click here to register</a>.
+      </div>
     </div>
   );
 };
