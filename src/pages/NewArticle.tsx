@@ -1,6 +1,6 @@
 import "./NewArticle.scss";
 import { useForm } from "react-hook-form";
-import { Article } from "../types/types";
+import { Article, User } from "../types/types";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../components/Contexts";
 import { useHistory } from "react-router-dom";
@@ -16,6 +16,14 @@ const NewArticle = () => {
   const history = useHistory<State>();
   const [{ user }] = useCookies(["user"]);
   const [edit, setEdit] = useState(false);
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    fetch(`http://localhost:8000/users/${user}`)
+      .then((res) => res.json())
+      .then((uname: User) => setUsername(uname.name))
+      .catch((error) => console.error(error));
+  }, [user]);
 
   const {
     register,
@@ -54,7 +62,8 @@ const NewArticle = () => {
       .replace(/\s/g, "-");
 
     article.name = spacelessString.replace(/[^a-z0-9-]/g, "");
-    article.author = "Enid Blyton";
+
+    article.author = username;
     if (article.contents) {
       article.content = article.contents.split("\n");
     }
