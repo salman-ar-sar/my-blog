@@ -10,6 +10,12 @@
   justify-content: center;
 }
 
+@mixin gridCenter {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
 @mixin mobile {
   @media (max-width: $mobile) {
     @content;
