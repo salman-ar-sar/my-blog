@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import { ThemeContext } from "../components/Contexts";
 import { useCookies } from "react-cookie";
 import "./Login.scss";
+import sha256 from "../components/sha256";
+import { User } from "../types/types";
 
 const Login = () => {
   const history = useHistory();
@@ -21,13 +23,20 @@ const Login = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const submitForm = handleSubmit(({ username, password }) => {
-    if (username === "admin" && password === "root") {
-      //   alert("Correct");
-      setCookie("user", username, { path: "/" });
-      history.push("/profile");
+  const submitForm = handleSubmit(async ({ username, password }) => {
+    const response = await fetch(`http://localhost:8000/users/${username}`);
+    if (response.ok) {
+      const user: User = await response.json();
+      // console.log(user);
+      const hash = await sha256(password);
+      if (hash === user.passwordHash) {
+        setCookie("user", username, { path: "/" });
+        history.push("/profile");
+      } else {
+        alert("Wrong password!");
+      }
     } else {
-      alert("Wrong credentials!");
+      alert("Wrong username or fetch error!");
     }
   });
 
