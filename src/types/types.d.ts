@@ -10,4 +10,5 @@ export type Article = {
 export type User = {
   id: string;
   passwordHash: string;
+  name: string;
 };
