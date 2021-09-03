@@ -17,6 +17,7 @@ import NewArticle from "./pages/NewArticle";
 import PageNotFound from "./pages/PageNotFound";
 import { useCookies } from "react-cookie";
 import Register from "./pages/Register";
+import ViewProfile from "./pages/ViewProfile";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -56,6 +57,7 @@ function App() {
             <Route path="/register">
               <Register />
             </Route>
+            <Route path="/user/:name" component={ViewProfile} />
             <PrivateRoute path="/profile">
               <Profile />
             </PrivateRoute>
