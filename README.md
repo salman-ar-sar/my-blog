@@ -14,7 +14,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Node/NPM
 - A JSON file containing data in atricles object format stored in `data/data.json`. [Click here to see a sample](https://gitlab.hatio.in/-/snippets/306).
 - [JSON server](https://www.npmjs.com/package/json-server) watching this JSON and running at port 8000
-  - Use this command to run it: `npx json-server --watch data/data.json --port 8000`
+  - Use this command to run it: `npx json-server --watch data/data.json --port 8000` or run the script for the same in `package.json` using the command: `yarn run json-server`
 
 ## Todo
 
