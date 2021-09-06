@@ -19,35 +19,44 @@ const NavBar: React.FC = () => {
   return (
     <nav className={darkMode ? "dark" : "light"}>
       <ul>
-        <Link to="/">
+        <Link className="logoLink" to="/">
           <li className="logo">My Blog</li>
         </Link>
         <img
+          className="blogIcon"
           src="https://img.icons8.com/color/96/000000/google-blog-search.png"
           alt="an icon of a blog"
           onClick={() => history.push("/about")}
         />
-        {user ? (
-          <>
-            {location.pathname !== "/profile" && (
-              <li>
-                <Link className="pageLink" to="/profile">
-                  Profile
+        <div className="buttonContainer">
+          {user ? (
+            <>
+              {location.pathname !== "/profile" && (
+                <li className="profileButton">
+                  <Link className="pageLink" to="/profile">
+                    Profile
+                  </Link>
+                </li>
+              )}
+              <a
+                className="pageLink"
+                onClick={(event) => logout(event)}
+                href="/"
+              >
+                Logout
+              </a>
+            </>
+          ) : (
+            location.pathname !== "/login" && (
+              <li className="pageLink">
+                <Link className="pageLink" to="/login">
+                  Sign In
                 </Link>
               </li>
-            )}
-            <a className="pageLink" onClick={(event) => logout(event)} href="/">
-              Logout
-            </a>
-          </>
-        ) : (
-          <li>
-            <Link className="pageLink" to="/login">
-              Sign In
-            </Link>
-          </li>
-        )}
-        <li style={{ marginRight: "2rem" }}>
+            )
+          )}
+        </div>
+        <li className="themeToggle">
           <label className="switch">
             <input
               type="checkbox"

@@ -5,10 +5,8 @@ h1 {
 }
 
 .articleContainer {
-  display: grid;
+  @include gridCenter;
   grid-template-columns: repeat(4, 1fr);
-  align-items: center;
-  justify-items: center;
   gap: 1rem;
   padding: 2rem;
 }
