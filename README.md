@@ -20,7 +20,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Todo
 
 - [x] Confirmation popup on deleting article
-- [ ] More SCSS integration
+- [x] More SCSS integration
 
 ## Available Scripts
 
