@@ -54,9 +54,9 @@ function App() {
             <LoginRoute path="/login">
               <Login />
             </LoginRoute>
-            <Route path="/register">
+            <LoginRoute path="/register">
               <Register />
-            </Route>
+            </LoginRoute>
             <Route path="/user/:name" component={ViewProfile} />
             <PrivateRoute path="/profile">
               <Profile />
