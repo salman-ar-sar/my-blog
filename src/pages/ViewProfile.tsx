@@ -21,11 +21,7 @@ const ViewProfile = ({ match }: { match: match<Params> }) => {
       <h1>{name}</h1>
       {isPending && <div className="loadingMsg">Loading...</div>}
       {errorMsg && <div className="errorMsg">{errorMsg}</div>}
-      {name && (
-        <div className="articleContainer">
-          {articles && <ArticleContainer articles={articles} />}
-        </div>
-      )}
+      {name && articles && <ArticleContainer articles={articles} />}
     </div>
   );
 };
