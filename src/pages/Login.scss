@@ -1,4 +1,4 @@
-@use "../styles/variables" as *;
+@use "../styles" as *;
 
 .loginForm {
   h2 {
@@ -10,7 +10,7 @@
 
   form {
     padding: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
   }
 
   .inputClass {
@@ -38,9 +38,19 @@
     text-align: center;
     margin-bottom: 3rem;
   }
+  .gLoginButton {
+    margin: 0 auto;
+    @include flexCenter;
+    align-items: center;
+  }
 }
 
 .centerDiv {
   text-align: center;
   font-size: larger;
+}
+
+.icon {
+  width: 1.5rem;
+  // margin-right: 1rem;
 }
