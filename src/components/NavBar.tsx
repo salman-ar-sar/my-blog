@@ -20,17 +20,12 @@ const NavBar: React.FC = () => {
     history.push("/login");
   };
 
-  const googleLogout = () => {
+  const socialLogout = () => {
     setCookie("user", "", { path: "/" });
     setGCookie("googleUser", "", { path: "/" });
     setFCookie("fbUser", "", { path: "/" });
     history.push("/login");
   };
-
-  // const fbLogout = () => {
-  //   setCookie("user", "", { path: "/" });
-  //   history.push("/login");
-  // };
 
   return (
     <nav className={darkMode ? "dark" : "light"}>
@@ -71,12 +66,22 @@ const NavBar: React.FC = () => {
                       onClick={renderProps.onClick}
                       disabled={renderProps.disabled}
                     >
-                      <img
-                        className="icon"
-                        src="https://img.icons8.com/color/48/000000/google-logo.png"
-                        alt="google"
-                        style={{ marginRight: "0.5rem" }}
-                      />
+                      {googleUser && (
+                        <img
+                          className="icon"
+                          src="https://img.icons8.com/color/48/000000/google-logo.png"
+                          alt="google"
+                          style={{ marginRight: "0.5rem" }}
+                        />
+                      )}
+                      {fbUser && (
+                        <img
+                          className="icon"
+                          src="https://img.icons8.com/bubbles/100/000000/facebook-f.png"
+                          alt="google"
+                          style={{ marginRight: "0.5rem" }}
+                        />
+                      )}
                       Logout
                       <img
                         className="icon"
@@ -86,7 +91,7 @@ const NavBar: React.FC = () => {
                       />
                     </button>
                   )}
-                  onLogoutSuccess={googleLogout}
+                  onLogoutSuccess={socialLogout}
                 ></GoogleLogout>
               )}
             </>
