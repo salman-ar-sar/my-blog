@@ -94,12 +94,26 @@ const Login = () => {
           <div className="errorMsg">This field is required</div>
         )}{" "}
         <div className="inputClass">
-          <button className={darkMode ? "dark" : ""}>Submit</button>
+          <button className={darkMode ? "dark" : ""}>Sign in</button>
         </div>
       </form>
       <div className="googleLogin">
         <GoogleLogin
           clientId={clientId}
+          render={(renderProps) => (
+            <button
+              className="gLoginButton"
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+            >
+              <img
+                className="icon"
+                src="https://img.icons8.com/color/48/000000/google-logo.png"
+                alt="google"
+              />
+              Sign in using Google!
+            </button>
+          )}
           buttonText="Login with Google!"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
