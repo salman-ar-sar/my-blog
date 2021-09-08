@@ -139,7 +139,7 @@ const Login = () => {
         >
           <img
             className="icon"
-            src="https://img.icons8.com/color/50/000000/facebook.png"
+            src="https://img.icons8.com/bubbles/100/000000/facebook-f.png"
             alt="google"
             style={{ marginRight: "0.5rem" }}
           />
