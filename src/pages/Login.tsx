@@ -10,7 +10,8 @@ import GoogleLogin, {
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
 } from "react-google-login";
-import { clientId } from "../config";
+import { clientId, fbAppId } from "../config";
+import SocialButton from "../components/SocialButton";
 
 const Login = () => {
   const history = useHistory();
@@ -118,6 +119,21 @@ const Login = () => {
           onFailure={responseGoogle}
           cookiePolicy={"single_host_origin"}
         />
+        <SocialButton
+          className="gLoginButton"
+          provider="facebook"
+          appId={fbAppId}
+          onLoginSuccess={(res) => console.log(res)}
+          onLoginFailure={(res) => console.log(res)}
+        >
+          <img
+            className="icon"
+            src="https://img.icons8.com/color/50/000000/facebook.png"
+            alt="google"
+            style={{ marginRight: "0.5rem" }}
+          />
+          Login with Facebook
+        </SocialButton>
       </div>
       <div className="centerDiv">
         Not registered? <Link to="/register">Click here to register</Link>.
