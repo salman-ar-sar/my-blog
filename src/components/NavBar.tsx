@@ -58,7 +58,27 @@ const NavBar: React.FC = () => {
               ) : (
                 <GoogleLogout
                   clientId={clientId}
-                  buttonText="Logout"
+                  render={(renderProps) => (
+                    <button
+                      className="gLoginButton"
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                    >
+                      <img
+                        className="icon"
+                        src="https://img.icons8.com/color/48/000000/google-logo.png"
+                        alt="google"
+                        style={{ marginRight: "0.5rem" }}
+                      />
+                      Logout
+                      <img
+                        className="icon"
+                        src="https://img.icons8.com/color/48/000000/exit.png"
+                        alt="logout"
+                        style={{ marginLeft: "0.5rem" }}
+                      />
+                    </button>
+                  )}
                   onLogoutSuccess={googleLogout}
                 ></GoogleLogout>
               )}
