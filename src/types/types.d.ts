@@ -16,3 +16,20 @@ export type User = {
 export type UserForm = User & {
   password: string;
 };
+
+export interface fbResponse {
+  _provider: string;
+  _profile: Profile;
+  _token: Token;
+}
+interface Profile {
+  id: string;
+  name: string;
+  firstName: string;
+  lastName: string;
+  profilePicURL: string;
+}
+interface Token {
+  accessToken: string;
+  expiresAt: number;
+}
