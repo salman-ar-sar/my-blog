@@ -25,13 +25,16 @@ const Register = () => {
     user.passwordHash = await sha256(password);
     user.name = name;
 
-    const response = await fetch("http://localhost:8000/users", {
-      method: "POST",
-      body: JSON.stringify(user),
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-    });
+    const response = await fetch(
+      "https://my-json-server.typicode.com/salman-ar-sar/my-blog-data/users",
+      {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      }
+    );
 
     if (response.ok) {
       setCookie("user", user.id, { path: "/" });

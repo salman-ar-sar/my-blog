@@ -13,7 +13,9 @@ const Profile = () => {
   const [username, setUsername] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:8000/users/${user}`)
+    fetch(
+      `https://my-json-server.typicode.com/salman-ar-sar/my-blog-data/users/${user}`
+    )
       .then((res) => res.json())
       .then((uname: User) => setUsername(uname.name))
       .catch((error) => console.error(error));
@@ -24,7 +26,7 @@ const Profile = () => {
     isPending,
     errorMsg,
   } = useFetch<Article[]>(
-    `http://localhost:8000/articles?author=${username
+    `https://my-json-server.typicode.com/salman-ar-sar/my-blog-data/articles?author=${username
       .trim()
       .replace(" ", "%20")}`
   );

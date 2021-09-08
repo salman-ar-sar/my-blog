@@ -19,7 +19,9 @@ const NewArticle = () => {
   const [username, setUsername] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:8000/users/${user}`)
+    fetch(
+      `https://my-json-server.typicode.com/salman-ar-sar/my-blog-data/users/${user}`
+    )
       .then((res) => res.json())
       .then((uname: User) => setUsername(uname.name))
       .catch((error) => console.error(error));
@@ -34,7 +36,9 @@ const NewArticle = () => {
 
   const fetchPost = async () => {
     const id = history.location.state.editArticle;
-    const response = await fetch(`http://localhost:8000/articles/${id}`);
+    const response = await fetch(
+      `https://my-json-server.typicode.com/salman-ar-sar/my-blog-data/articles/${id}`
+    );
     const articles = await response.json();
     return articles;
   };
@@ -74,10 +78,11 @@ const NewArticle = () => {
 
     if (edit) {
       const id = history.location.state.editArticle;
-      url = `http://localhost:8000/articles/${id}`;
+      url = `https://my-json-server.typicode.com/salman-ar-sar/my-blog-data/articles/${id}`;
       method = "PUT";
     } else {
-      url = "http://localhost:8000/articles";
+      url =
+        "https://my-json-server.typicode.com/salman-ar-sar/my-blog-data/articles";
       method = "POST";
     }
 

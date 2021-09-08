@@ -14,7 +14,9 @@ const ArticlePage = ({ match }: { match: match<Params> }) => {
     data: article,
     isPending,
     errorMsg,
-  } = useFetch<Article>(`http://localhost:8000/articles/${id}`);
+  } = useFetch<Article>(
+    `https://my-json-server.typicode.com/salman-ar-sar/my-blog-data/articles/${id}`
+  );
 
   return (
     <div className="articlePage">

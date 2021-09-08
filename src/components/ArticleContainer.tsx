@@ -28,9 +28,12 @@ const ArticleContainer = ({ articles }: Props) => {
   };
 
   const confirmDelete = async () => {
-    const response = await fetch(`http://localhost:8000/articles/${deleteID}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `https://my-json-server.typicode.com/salman-ar-sar/my-blog-data/articles/${deleteID}`,
+      {
+        method: "DELETE",
+      }
+    );
 
     if (response.ok) {
       history.go(0);

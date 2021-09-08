@@ -14,7 +14,9 @@ const HomePage: React.FC = () => {
     data: articleList,
     isPending,
     errorMsg,
-  } = useFetch<Article[]>("http://localhost:8000/articles");
+  } = useFetch<Article[]>(
+    "https://my-json-server.typicode.com/salman-ar-sar/my-blog-data/articles"
+  );
 
   return (
     <>

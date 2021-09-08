@@ -32,7 +32,9 @@ const Login = () => {
   } = useForm<FormData>();
 
   const submitForm = handleSubmit(async ({ username, password }) => {
-    const response = await fetch(`http://localhost:8000/users/${username}`);
+    const response = await fetch(
+      `https://my-json-server.typicode.com/salman-ar-sar/my-blog-data/users/${username}`
+    );
     if (response.ok) {
       const user: User = await response.json();
       // console.log(user);

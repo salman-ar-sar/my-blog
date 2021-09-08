@@ -14,7 +14,9 @@ const ViewProfile = ({ match }: { match: match<Params> }) => {
     data: articles,
     isPending,
     errorMsg,
-  } = useFetch<Article[]>(`http://localhost:8000/articles?author=${name}`);
+  } = useFetch<Article[]>(
+    `https://my-json-server.typicode.com/salman-ar-sar/my-blog-data/articles?author=${name}`
+  );
 
   return (
     <div>
