@@ -5,7 +5,7 @@ import { ThemeContext } from "../components/Contexts";
 import { useCookies } from "react-cookie";
 import "./Login.scss";
 import sha256 from "../components/sha256";
-import { User } from "../types/types";
+import { fbResponse, User } from "../types/types";
 import GoogleLogin, {
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
@@ -18,6 +18,7 @@ const Login = () => {
   const { darkMode } = useContext(ThemeContext);
   const [, setCookie] = useCookies(["user"]);
   const [, setGCookie] = useCookies(["googleUser"]);
+  const [, setFCookie] = useCookies(["fbUser"]);
 
   type FormData = {
     username: string;
@@ -64,6 +65,16 @@ const Login = () => {
       });
       history.push("/profile");
     }
+  };
+
+  const responseFacebook = (response: fbResponse) => {
+    setCookie("user", response._profile.firstName.toLowerCase(), {
+      path: "/",
+    });
+    setGCookie("googleUser", "true", {
+      path: "/",
+    });
+    history.push("/profile");
   };
 
   return (
@@ -123,8 +134,8 @@ const Login = () => {
           className="gLoginButton"
           provider="facebook"
           appId={fbAppId}
-          onLoginSuccess={(res) => console.log(res)}
-          onLoginFailure={(res) => console.log(res)}
+          onLoginSuccess={responseFacebook}
+          onLoginFailure={responseFacebook}
         >
           <img
             className="icon"
