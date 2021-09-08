@@ -71,7 +71,7 @@ const Login = () => {
     setCookie("user", response._profile.firstName.toLowerCase(), {
       path: "/",
     });
-    setGCookie("googleUser", "true", {
+    setFCookie("fbUser", "true", {
       path: "/",
     });
     history.push("/profile");
