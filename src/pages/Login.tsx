@@ -114,7 +114,6 @@ const Login = () => {
               Sign in using Google!
             </button>
           )}
-          buttonText="Login with Google!"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
           cookiePolicy={"single_host_origin"}
