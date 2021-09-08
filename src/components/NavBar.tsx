@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { useCookies } from "react-cookie";
+import { GoogleLogout } from "react-google-login";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { ThemeContext } from "./Contexts";
 import "./NavBar.scss";
@@ -7,12 +8,19 @@ import "./NavBar.scss";
 const NavBar: React.FC = () => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
   const [{ user }, setCookie] = useCookies(["user"]);
+  const [{ googleUser }, setGCookie] = useCookies(["googleUser"]);
   const history = useHistory();
   let location = useLocation();
 
   const logout = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault();
     setCookie("user", "", { path: "/" });
+    history.push("/login");
+  };
+
+  const googleLogout = () => {
+    setCookie("user", "", { path: "/" });
+    setGCookie("googleUser", "", { path: "/" });
     history.push("/login");
   };
 
@@ -38,13 +46,21 @@ const NavBar: React.FC = () => {
                   </Link>
                 </li>
               )}
-              <a
-                className="pageLink"
-                onClick={(event) => logout(event)}
-                href="/"
-              >
-                Logout
-              </a>
+              {!googleUser ? (
+                <a
+                  className="pageLink"
+                  onClick={(event) => logout(event)}
+                  href="/"
+                >
+                  Logout
+                </a>
+              ) : (
+                <GoogleLogout
+                  clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                  buttonText="Logout"
+                  onLogoutSuccess={googleLogout}
+                ></GoogleLogout>
+              )}
             </>
           ) : (
             location.pathname !== "/login" && (
