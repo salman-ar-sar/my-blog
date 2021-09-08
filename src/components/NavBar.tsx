@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useCookies } from "react-cookie";
 import { GoogleLogout } from "react-google-login";
 import { Link, useHistory, useLocation } from "react-router-dom";
+import { clientId } from "../config";
 import { ThemeContext } from "./Contexts";
 import "./NavBar.scss";
 
@@ -56,7 +57,7 @@ const NavBar: React.FC = () => {
                 </a>
               ) : (
                 <GoogleLogout
-                  clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                  clientId={clientId}
                   buttonText="Logout"
                   onLogoutSuccess={googleLogout}
                 ></GoogleLogout>

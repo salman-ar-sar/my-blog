@@ -10,14 +10,13 @@ import GoogleLogin, {
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
 } from "react-google-login";
+import { clientId } from "../config";
 
 const Login = () => {
   const history = useHistory();
   const { darkMode } = useContext(ThemeContext);
   const [, setCookie] = useCookies(["user"]);
   const [, setGCookie] = useCookies(["googleUser"]);
-  const clientId =
-    "112013412287-16sg10nhi93f7rtv1r7720b9hm8l0vg1.apps.googleusercontent.com";
 
   type FormData = {
     username: string;
