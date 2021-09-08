@@ -10,6 +10,7 @@ const NavBar: React.FC = () => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
   const [{ user }, setCookie] = useCookies(["user"]);
   const [{ googleUser }, setGCookie] = useCookies(["googleUser"]);
+  const [{ fbUser }, setFCookie] = useCookies(["fbUser"]);
   const history = useHistory();
   let location = useLocation();
 
@@ -22,8 +23,14 @@ const NavBar: React.FC = () => {
   const googleLogout = () => {
     setCookie("user", "", { path: "/" });
     setGCookie("googleUser", "", { path: "/" });
+    setFCookie("fbUser", "", { path: "/" });
     history.push("/login");
   };
+
+  // const fbLogout = () => {
+  //   setCookie("user", "", { path: "/" });
+  //   history.push("/login");
+  // };
 
   return (
     <nav className={darkMode ? "dark" : "light"}>
@@ -47,7 +54,7 @@ const NavBar: React.FC = () => {
                   </Link>
                 </li>
               )}
-              {!googleUser ? (
+              {!(googleUser || fbUser) ? (
                 <a
                   className="pageLink"
                   onClick={(event) => logout(event)}
