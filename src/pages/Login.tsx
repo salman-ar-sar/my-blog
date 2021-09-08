@@ -123,7 +123,7 @@ const Login = () => {
                 alt="google"
                 style={{ marginRight: "0.5rem" }}
               />
-              Sign in using Google!
+              Sign in with Google!
             </button>
           )}
           onSuccess={responseGoogle}
@@ -139,11 +139,11 @@ const Login = () => {
         >
           <img
             className="icon"
-            src="https://img.icons8.com/bubbles/100/000000/facebook-f.png"
+            src="https://image.flaticon.com/icons/png/512/747/747543.png"
             alt="google"
-            style={{ marginRight: "0.5rem" }}
+            style={{ marginRight: "0.6rem" }}
           />
-          Login with Facebook
+          Sign in with Facebook!
         </SocialButton>
       </div>
       <div className="centerDiv">
