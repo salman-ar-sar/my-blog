@@ -109,6 +109,7 @@ const Login = () => {
                 className="icon"
                 src="https://img.icons8.com/color/48/000000/google-logo.png"
                 alt="google"
+                style={{ marginRight: "0.5rem" }}
               />
               Sign in using Google!
             </button>
