@@ -6,11 +6,18 @@ import { useCookies } from "react-cookie";
 import "./Login.scss";
 import sha256 from "../components/sha256";
 import { User } from "../types/types";
+import GoogleLogin, {
+  GoogleLoginResponse,
+  GoogleLoginResponseOffline,
+} from "react-google-login";
 
 const Login = () => {
   const history = useHistory();
   const { darkMode } = useContext(ThemeContext);
   const [, setCookie] = useCookies(["user"]);
+  const [, setGCookie] = useCookies(["googleUser"]);
+  const clientId =
+    "112013412287-16sg10nhi93f7rtv1r7720b9hm8l0vg1.apps.googleusercontent.com";
 
   type FormData = {
     username: string;
@@ -39,6 +46,25 @@ const Login = () => {
       alert("Wrong username or fetch error!");
     }
   });
+
+  function isL(obj: any): obj is GoogleLoginResponse {
+    return obj.profileObj !== undefined;
+  }
+
+  const responseGoogle = (
+    response: GoogleLoginResponse | GoogleLoginResponseOffline
+  ): void => {
+    console.log(response);
+    if (isL(response)) {
+      setCookie("user", response.profileObj.givenName.toLowerCase(), {
+        path: "/",
+      });
+      setGCookie("googleUser", "true", {
+        path: "/",
+      });
+      history.push("/profile");
+    }
+  };
 
   return (
     <div className="loginForm">
@@ -71,7 +97,15 @@ const Login = () => {
           <button className={darkMode ? "dark" : ""}>Submit</button>
         </div>
       </form>
-
+      <div className="googleLogin">
+        <GoogleLogin
+          clientId={clientId}
+          buttonText="Login with Google!"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={"single_host_origin"}
+        />
+      </div>
       <div className="centerDiv">
         Not registered? <Link to="/register">Click here to register</Link>.
       </div>
