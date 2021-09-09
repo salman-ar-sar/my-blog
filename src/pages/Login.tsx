@@ -17,8 +17,7 @@ const Login = () => {
   const history = useHistory();
   const { darkMode } = useContext(ThemeContext);
   const [, setCookie] = useCookies(["user"]);
-  const [, setGCookie] = useCookies(["googleUser"]);
-  const [, setFCookie] = useCookies(["fbUser"]);
+  const [, setSocialCookie] = useCookies(["socialUser"]);
 
   type FormData = {
     username: string;
@@ -31,6 +30,11 @@ const Login = () => {
     formState: { errors },
   } = useForm<FormData>();
 
+  const setUserCookie = (username: string) => {
+    setCookie("user", username, { path: "/" });
+    history.push("/profile");
+  };
+
   const submitForm = handleSubmit(async ({ username, password }) => {
     const response = await fetch(`http://localhost:8000/users/${username}`);
     if (response.ok) {
@@ -38,8 +42,7 @@ const Login = () => {
       // console.log(user);
       const hash = await sha256(password);
       if (hash === user.passwordHash) {
-        setCookie("user", username, { path: "/" });
-        history.push("/profile");
+        setUserCookie(username);
       } else {
         alert("Wrong password!");
       }
@@ -57,24 +60,26 @@ const Login = () => {
   ): void => {
     console.log(response);
     if (isL(response)) {
-      setCookie("user", response.profileObj.givenName.toLowerCase(), {
+      setSocialCookie("socialUser", "google", {
         path: "/",
       });
-      setGCookie("googleUser", "true", {
-        path: "/",
-      });
-      history.push("/profile");
+      setUserCookie(response.profileObj.givenName.toLowerCase());
     }
   };
 
   const responseFacebook = (response: fbResponse) => {
-    setCookie("user", response._profile.firstName.toLowerCase(), {
+    setSocialCookie("socialUser", "fb", {
       path: "/",
     });
-    setFCookie("fbUser", "true", {
-      path: "/",
-    });
-    history.push("/profile");
+    setUserCookie(response._profile.firstName.toLowerCase());
+  };
+
+  const responseInsta = (response: fbResponse) => {
+    // setSocialCookie("socialUser", "fb", {
+    //   path: "/",
+    // });
+    // setUserCookie(response._profile.firstName.toLowerCase());
+    console.log(response);
   };
 
   return (
@@ -140,7 +145,7 @@ const Login = () => {
           <img
             className="icon"
             src="https://image.flaticon.com/icons/png/512/747/747543.png"
-            alt="google"
+            alt="facebook"
             style={{ marginRight: "0.6rem" }}
           />
           Sign in with Facebook!
