@@ -10,7 +10,7 @@ import GoogleLogin, {
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
 } from "react-google-login";
-import { clientId, fbAppId } from "../config";
+import { clientId, fbAppId, instaAppId } from "../config";
 import SocialButton from "../components/SocialButton";
 
 const Login = () => {
@@ -144,6 +144,21 @@ const Login = () => {
             style={{ marginRight: "0.6rem" }}
           />
           Sign in with Facebook!
+        </SocialButton>
+        <SocialButton
+          className="gLoginButton"
+          provider="instagram"
+          appId={instaAppId}
+          onLoginSuccess={responseInsta}
+          onLoginFailure={responseInsta}
+        >
+          <img
+            className="icon"
+            src="https://img.icons8.com/fluency/50/000000/instagram-new.png"
+            alt="insta"
+            style={{ marginRight: "0.6rem" }}
+          />
+          Sign in with Instagram!
         </SocialButton>
       </div>
       <div className="centerDiv">
