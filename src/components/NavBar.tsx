@@ -9,8 +9,7 @@ import "./NavBar.scss";
 const NavBar: React.FC = () => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
   const [{ user }, setCookie] = useCookies(["user"]);
-  const [{ googleUser }, setGCookie] = useCookies(["googleUser"]);
-  const [{ fbUser }, setFCookie] = useCookies(["fbUser"]);
+  const [{ socialUser }, setSocialCookie] = useCookies(["socialUser"]);
   const history = useHistory();
   let location = useLocation();
 
@@ -22,8 +21,7 @@ const NavBar: React.FC = () => {
 
   const socialLogout = () => {
     setCookie("user", "", { path: "/" });
-    setGCookie("googleUser", "", { path: "/" });
-    setFCookie("fbUser", "", { path: "/" });
+    setSocialCookie("socialUser", "", { path: "/" });
     history.push("/login");
   };
 
@@ -49,7 +47,7 @@ const NavBar: React.FC = () => {
                   </Link>
                 </li>
               )}
-              {!(googleUser || fbUser) ? (
+              {!socialUser ? (
                 <a
                   className="pageLink"
                   onClick={(event) => logout(event)}
@@ -66,7 +64,7 @@ const NavBar: React.FC = () => {
                       onClick={renderProps.onClick}
                       disabled={renderProps.disabled}
                     >
-                      {googleUser && (
+                      {socialUser === "google" && (
                         <img
                           className="icon"
                           src="https://img.icons8.com/color/48/000000/google-logo.png"
@@ -74,7 +72,7 @@ const NavBar: React.FC = () => {
                           style={{ marginRight: "0.5rem" }}
                         />
                       )}
-                      {fbUser && (
+                      {socialUser === "fb" && (
                         <img
                           className="icon"
                           src="https://img.icons8.com/bubbles/100/000000/facebook-f.png"

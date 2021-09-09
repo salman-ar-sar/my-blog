@@ -10,15 +10,14 @@ import GoogleLogin, {
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
 } from "react-google-login";
-import { clientId, fbAppId } from "../config";
+import { clientId, fbAppId, instaAppId } from "../config";
 import SocialButton from "../components/SocialButton";
 
 const Login = () => {
   const history = useHistory();
   const { darkMode } = useContext(ThemeContext);
   const [, setCookie] = useCookies(["user"]);
-  const [, setGCookie] = useCookies(["googleUser"]);
-  const [, setFCookie] = useCookies(["fbUser"]);
+  const [, setSocialCookie] = useCookies(["socialUser"]);
 
   type FormData = {
     username: string;
@@ -31,6 +30,11 @@ const Login = () => {
     formState: { errors },
   } = useForm<FormData>();
 
+  const setUserCookie = (username: string) => {
+    setCookie("user", username, { path: "/" });
+    history.push("/profile");
+  };
+
   const submitForm = handleSubmit(async ({ username, password }) => {
     const response = await fetch(
       `https://my-json-server.typicode.com/salman-ar-sar/my-blog-data/users/${username}`
@@ -40,8 +44,7 @@ const Login = () => {
       // console.log(user);
       const hash = await sha256(password);
       if (hash === user.passwordHash) {
-        setCookie("user", username, { path: "/" });
-        history.push("/profile");
+        setUserCookie(username);
       } else {
         alert("Wrong password!");
       }
@@ -59,24 +62,26 @@ const Login = () => {
   ): void => {
     console.log(response);
     if (isL(response)) {
-      setCookie("user", response.profileObj.givenName.toLowerCase(), {
+      setSocialCookie("socialUser", "google", {
         path: "/",
       });
-      setGCookie("googleUser", "true", {
-        path: "/",
-      });
-      history.push("/profile");
+      setUserCookie(response.profileObj.givenName.toLowerCase());
     }
   };
 
   const responseFacebook = (response: fbResponse) => {
-    setCookie("user", response._profile.firstName.toLowerCase(), {
+    setSocialCookie("socialUser", "fb", {
       path: "/",
     });
-    setFCookie("fbUser", "true", {
-      path: "/",
-    });
-    history.push("/profile");
+    setUserCookie(response._profile.firstName.toLowerCase());
+  };
+
+  const responseInsta = (response: fbResponse) => {
+    // setSocialCookie("socialUser", "fb", {
+    //   path: "/",
+    // });
+    // setUserCookie(response._profile.firstName.toLowerCase());
+    console.log(response);
   };
 
   return (
@@ -142,10 +147,25 @@ const Login = () => {
           <img
             className="icon"
             src="https://image.flaticon.com/icons/png/512/747/747543.png"
-            alt="google"
+            alt="facebook"
             style={{ marginRight: "0.6rem" }}
           />
           Sign in with Facebook!
+        </SocialButton>
+        <SocialButton
+          className="gLoginButton"
+          provider="instagram"
+          appId={instaAppId}
+          onLoginSuccess={responseInsta}
+          onLoginFailure={responseInsta}
+        >
+          <img
+            className="icon"
+            src="https://img.icons8.com/fluency/50/000000/instagram-new.png"
+            alt="insta"
+            style={{ marginRight: "0.6rem" }}
+          />
+          Sign in with Instagram!
         </SocialButton>
       </div>
       <div className="centerDiv">
